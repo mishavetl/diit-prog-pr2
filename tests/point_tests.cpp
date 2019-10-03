@@ -14,8 +14,8 @@ TEST_CASE("Point input/output is correct", "[point]") {
     SECTION("Point is being created properly") {
         Point point(x, y);
 
-        REQUIRE(point.getX() == Approx(x));
-        REQUIRE(point.getY() == Approx(y));
+        REQUIRE(point.x == Approx(x));
+        REQUIRE(point.y == Approx(y));
     }
 
     SECTION("Point can be initialized from input stream") {
@@ -25,16 +25,16 @@ TEST_CASE("Point input/output is correct", "[point]") {
 
         ss >> point;
 
-        REQUIRE(point.getX() == Approx(x));
-        REQUIRE(point.getY() == Approx(y));
+        REQUIRE(point.x == Approx(x));
+        REQUIRE(point.y == Approx(y));
     }
 
-    SECTION("Point can be initialized from input stream") {
+    SECTION("Point can be written to output stream") {
         Point point(x, y);
         std::stringstream ss, ss1;
 
         ss << point;
-        ss1 << x << " " << y;
+        ss1 << "Point<" << x << ", " << y << ">";
 
         REQUIRE(ss1.str() == ss.str());
     }

@@ -6,19 +6,17 @@
 
 namespace lr2 {
     class Point {
+    public:
         coord_t x, y;
 
-    public:
         explicit Point() {}
         Point(coord_t x, coord_t y);
 
-        bool is_between(Point& left, Point& right);
+        bool is_between(const Point& left, const Point& right);
 
-        coord_t& getX() { return x; }
-        coord_t& getY() { return y; }
     };
 
-
+    bool operator==(const Point& left, const Point& right);
     std::istream& operator>>(std::istream& stream, Point& point);
-    std::ostream& operator<<(std::ostream& stream, Point& point);
+    std::ostream& operator<<(std::ostream& stream, const Point& point);
 }

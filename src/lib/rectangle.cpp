@@ -1,0 +1,15 @@
+#include "rectangle.h"
+
+using namespace lr2;
+
+Rectangle::Rectangle(const Point& left, const Point& right) {
+    leftDown = Point(std::min(left.x, right.x), std::min(left.y, right.y));
+    leftUp = Point(std::min(left.x, right.x), std::max(left.y, right.y));
+    rightUp = Point(std::max(left.x, right.x), std::max(left.y, right.y));
+    rightDown = Point(std::max(left.x, right.x), std::min(left.y, right.y));
+}
+
+std::ostream &lr2::operator<<(std::ostream &stream, const Rectangle &point) {
+    stream << "Rectangle<" << point.leftDown << ", " << point.rightUp << ">";
+    return stream;
+}
