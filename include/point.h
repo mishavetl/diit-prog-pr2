@@ -3,17 +3,18 @@
 #include <iostream>
 
 #include "config.h"
+#include "rectangle.h"
 
 namespace lr2 {
     class Point {
     public:
         coord_t x, y;
 
-        explicit Point() {}
+        Point() {}
+        explicit Point(const Rectangle &rectangle);
         Point(coord_t x, coord_t y);
 
         bool is_between(const Point& left, const Point& right);
-
     };
 
     bool operator==(const Point& left, const Point& right);

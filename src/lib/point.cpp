@@ -1,3 +1,5 @@
+#include <sstream>
+
 #include "point.h"
 
 using namespace lr2;
@@ -5,6 +7,17 @@ using namespace lr2;
 Point::Point(coord_t x, coord_t y) {
     this->x = x;
     this->y = y;
+}
+
+Point::Point(const Rectangle &rectangle) {
+    if (!rectangle.isPoint()) {
+        std::stringstream ss;
+        ss << rectangle << "is not a point";
+        throw std::runtime_error(ss.str());
+    }
+
+    x = rectangle.leftDown.x;
+    y = rectangle.leftDown.y;
 }
 
 bool Point::is_between(const Point &left, const Point &right) {

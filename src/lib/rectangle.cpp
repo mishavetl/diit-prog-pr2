@@ -13,7 +13,11 @@ bool Rectangle::isSegment() const {
     return (leftDown == rightDown) != (leftDown == leftUp);
 }
 
-std::ostream &lr2::operator<<(std::ostream &stream, const Rectangle &point) {
-    stream << "Rectangle<" << point.leftDown << ", " << point.rightUp << ">";
+bool Rectangle::isPoint() const {
+    return leftDown == rightDown && leftDown == leftUp;
+}
+
+std::ostream &lr2::operator<<(std::ostream &stream, const Rectangle &rectangle) {
+    stream << "Rectangle<" << rectangle.leftDown << ", " << rectangle.rightUp << ">";
     return stream;
 }

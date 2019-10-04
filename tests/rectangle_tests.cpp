@@ -48,3 +48,29 @@ TEST_CASE("Rectangle check isSegment works properly", "[point]") {
         REQUIRE(rectangle.isSegment());
     }
 }
+
+TEST_CASE("Rectangle check isPoint works properly", "[point]") {
+    SECTION("works with basic input parameters 1") {
+        Rectangle rectangle(Point(1, 2), Point(1, 1));
+
+        REQUIRE(!rectangle.isPoint());
+    }
+
+    SECTION("works with basic input parameters 2") {
+        Rectangle rectangle(Point(1, 2), Point(3, 1));
+
+        REQUIRE(!rectangle.isPoint());
+    }
+
+    SECTION("works with basic input parameters 3") {
+        Rectangle rectangle(Point(1, 2), Point(1, 2));
+
+        REQUIRE(rectangle.isPoint());
+    }
+
+    SECTION("works with basic input parameters 4") {
+        Rectangle rectangle(Point(1, 2), Point(2, 2));
+
+        REQUIRE(!rectangle.isPoint());
+    }
+}

@@ -10,6 +10,7 @@ namespace lr2 {
         Rectangle(const Point& left, const Point& right);
 
         bool isSegment() const;
+        bool isPoint() const;
     };
 
     std::ostream& operator<<(std::ostream& stream, const Rectangle& point);
