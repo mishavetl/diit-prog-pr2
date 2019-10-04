@@ -9,6 +9,10 @@ Rectangle::Rectangle(const Point& left, const Point& right) {
     rightDown = Point(std::max(left.x, right.x), std::min(left.y, right.y));
 }
 
+bool Rectangle::isSegment() const {
+    return (leftDown == rightDown) != (leftDown == leftUp);
+}
+
 std::ostream &lr2::operator<<(std::ostream &stream, const Rectangle &point) {
     stream << "Rectangle<" << point.leftDown << ", " << point.rightUp << ">";
     return stream;

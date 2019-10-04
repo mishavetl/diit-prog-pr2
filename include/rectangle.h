@@ -1,6 +1,5 @@
 #pragma once
 
-#include "config.h"
 #include "point.h"
 
 namespace lr2 {
@@ -9,6 +8,8 @@ namespace lr2 {
         Point leftDown, leftUp, rightUp, rightDown;
 
         Rectangle(const Point& left, const Point& right);
+
+        bool isSegment() const;
     };
 
     std::ostream& operator<<(std::ostream& stream, const Rectangle& point);
