@@ -1,6 +1,7 @@
 #include <sstream>
 
 #include "point.h"
+#include "rectangle.h"
 
 using namespace lr2;
 

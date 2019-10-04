@@ -3,9 +3,10 @@
 #include <iostream>
 
 #include "config.h"
-#include "rectangle.h"
 
 namespace lr2 {
+    class Rectangle;
+
     class Point {
     public:
         coord_t x, y;
