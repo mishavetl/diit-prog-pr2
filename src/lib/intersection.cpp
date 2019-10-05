@@ -42,4 +42,5 @@ std::ostream& lr2::operator<<(std::ostream& stream, const Intersection& intersec
     } else {
         stream << "no intersection";
     }
+    return stream;
 }
