@@ -1,4 +1,5 @@
 #include <sstream>
+#include <equality.h>
 
 #include "point.h"
 #include "rectangle.h"
@@ -21,13 +22,13 @@ Point::Point(const Rectangle &rectangle) {
     y = rectangle.leftDown.y;
 }
 
-bool Point::is_between(const Point &left, const Point &right) {
-    return (std::min(left.x, right.x) < x && x < std::max(left.x, right.x))
-        && (std::min(left.y, right.y) < y && y < std::max(left.y, right.y));
+bool Point::isBetween(const Point &left, const Point &right) const {
+    return (std::min(left.x, right.x) <= x && x <= std::max(left.x, right.x))
+        && (std::min(left.y, right.y) <= y && y <= std::max(left.y, right.y));
 }
 
 bool lr2::operator==(const Point &left, const Point &right) {
-    return left.x == right.x && left.y == right.y;
+    return equal(left.x, right.x) && equal(left.y, right.y);
 }
 
 std::istream &lr2::operator>>(std::istream &stream, Point &point) {

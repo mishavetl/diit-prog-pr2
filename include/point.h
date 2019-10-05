@@ -9,13 +9,19 @@ namespace lr2 {
 
     class Point {
     public:
-        coord_t x, y;
+        coord_t x = 0, y = 0;
 
         Point() {}
         explicit Point(const Rectangle &rectangle);
         Point(coord_t x, coord_t y);
 
-        bool is_between(const Point& left, const Point& right);
+        /**
+         * Is this point between the two given points (left, right)
+         * @param left
+         * @param right
+         * @return boolean value
+         */
+        bool isBetween(const Point& left, const Point& right) const;
     };
 
     bool operator==(const Point& left, const Point& right);

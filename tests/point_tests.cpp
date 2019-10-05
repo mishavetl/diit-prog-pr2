@@ -40,16 +40,17 @@ TEST_CASE("Point input/output is correct", "[point]") {
     }
 }
 
-TEST_CASE("Point is_between works properly", "[point]") {
+TEST_CASE("Point isBetween works properly", "[point]") {
     Point point1(1, 1);
     Point point2(2, 2);
     Point point3(3, 3);
 
-    REQUIRE(point2.is_between(point1, point3));
-    REQUIRE(point2.is_between(point3, point1));
-    REQUIRE_FALSE(point2.is_between(point1, point2));
-    REQUIRE_FALSE(point2.is_between(point2, point2));
-    REQUIRE_FALSE(point2.is_between(point2, point1));
-    REQUIRE_FALSE(point2.is_between(point3, point2));
-    REQUIRE_FALSE(point2.is_between(point2, point3));
+    REQUIRE(point2.isBetween(point1, point3));
+    REQUIRE(point2.isBetween(point3, point1));
+    REQUIRE(point2.isBetween(point1, point2));
+    REQUIRE(point2.isBetween(point2, point2));
+    REQUIRE(point2.isBetween(point2, point1));
+    REQUIRE(point2.isBetween(point3, point2));
+    REQUIRE(point2.isBetween(point2, point3));
+    REQUIRE_FALSE(point1.isBetween(point2, point3));
 }
