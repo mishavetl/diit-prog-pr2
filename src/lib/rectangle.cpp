@@ -18,7 +18,7 @@ bool Rectangle::isPoint() const {
     return leftDown == rightDown && leftDown == leftUp;
 }
 
-Rectangle Rectangle::operator-(const Rectangle &other) {
+Intersection Rectangle::operator-(const Rectangle &other) const {
     Rectangle intersection = intersectLeftRight(other);
     if (!intersection.isValid()) {
         intersection = intersectRightLeft(other);
@@ -27,7 +27,7 @@ Rectangle Rectangle::operator-(const Rectangle &other) {
     return intersection;
 }
 
-Rectangle Rectangle::intersectLeftRight(const Rectangle &other) {
+Rectangle Rectangle::intersectLeftRight(const Rectangle &other) const {
     if (rightUp.isBetween(other.leftDown, other.rightUp)) {
         return {Point(
                 std::max(leftDown.x, other.leftDown.x),
@@ -42,7 +42,7 @@ Rectangle Rectangle::intersectLeftRight(const Rectangle &other) {
     return {};
 }
 
-Rectangle Rectangle::intersectRightLeft(const Rectangle &other) {
+Rectangle Rectangle::intersectRightLeft(const Rectangle &other) const {
     if (leftUp.isBetween(other.leftUp, other.rightDown)) {
         return {Point(
                 std::min(rightDown.x, other.rightDown.x),

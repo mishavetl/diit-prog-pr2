@@ -1,6 +1,7 @@
 #pragma once
 
 #include "point.h"
+#include "intersection.h"
 
 namespace lr2 {
     class Rectangle {
@@ -19,31 +20,31 @@ namespace lr2 {
          * @param other
          * @return Rectangles' intersection
          */
-        Rectangle operator-(const Rectangle& other);
+        Intersection operator-(const Rectangle& other) const;
 
         /**
          * Find the intersection of this rectangle with the given rectangle using leftDown->rightUp notation
          * @param other
          * @return Rectangles' intersection
          */
-        Rectangle intersectLeftRight(const Rectangle& other);
+        Rectangle intersectLeftRight(const Rectangle& other) const;
 
         /**
          * Find the intersection of this rectangle with the given rectangle using rightDown->leftUp notation
          * @param other
          * @return Rectangles' intersection
          */
-        Rectangle intersectRightLeft(const Rectangle& other);
+        Rectangle intersectRightLeft(const Rectangle& other) const;
 
         /**
          * Is this rectangle a valid rectangle
          * @return rectangle validness
          */
-        virtual bool isValid() {
+        virtual bool isValid() const {
             return valid;
         }
     };
 
     bool operator==(const Rectangle& left, const Rectangle& right);
-    std::ostream& operator<<(std::ostream& stream, const Rectangle& point);
+    std::ostream& operator<<(std::ostream& stream, const Rectangle& rectangle);
 }

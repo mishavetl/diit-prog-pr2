@@ -5,7 +5,7 @@
 
 using namespace lr2;
 
-TEST_CASE("Rectangle input/output is correct", "[point]") {
+TEST_CASE("Rectangle input/output is correct", "[rectangle]") {
     SECTION("Rectangle is being created properly") {
         Rectangle rectangle(Point(1, 2), Point(3, 4));
 
@@ -23,7 +23,7 @@ TEST_CASE("Rectangle input/output is correct", "[point]") {
     }
 }
 
-TEST_CASE("Rectangle check isSegment works properly", "[point]") {
+TEST_CASE("Rectangle check isSegment works properly", "[rectangle]") {
     SECTION("works with basic input parameters 1") {
         Rectangle rectangle(Point(1, 2), Point(1, 1));
 
@@ -49,7 +49,7 @@ TEST_CASE("Rectangle check isSegment works properly", "[point]") {
     }
 }
 
-TEST_CASE("Rectangle check isPoint works properly", "[point]") {
+TEST_CASE("Rectangle check isPoint works properly", "[rectangle]") {
     SECTION("works with basic input parameters 1") {
         Rectangle rectangle(Point(1, 2), Point(1, 1));
 
@@ -75,60 +75,66 @@ TEST_CASE("Rectangle check isPoint works properly", "[point]") {
     }
 }
 
-TEST_CASE("Rectangle intersection operator- works properly", "[point]") {
+TEST_CASE("Rectangle intersection operator- works properly", "[rectangle]") {
     SECTION("works with basic input parameters 1") {
         Rectangle rectangle1(Point(1, 2), Point(1, 1));
         Rectangle rectangle2(Point(1, 2), Point(1, 1));
 
-        Rectangle intersection = rectangle1 - rectangle2;
-        REQUIRE(intersection == Rectangle(Point(1, 1), Point(1, 2)));
+        Intersection intersection = rectangle1 - rectangle2;
+        REQUIRE(intersection.type == IntersectionType::segment);
+        REQUIRE(*intersection.shape.segment == Segment(Point(1, 1), Point(1, 2)));
     }
 
     SECTION("works with basic input parameters 2") {
         Rectangle rectangle1(Point(-1.2, 0), Point(3.65, 4.213));
         Rectangle rectangle2(Point(2.1, 1.1), Point(7.34, 7.07));
 
-        Rectangle intersection = rectangle1 - rectangle2;
-        REQUIRE(intersection == Rectangle(Point(2.1, 1.1), Point(3.65, 4.213)));
+        Intersection intersection = rectangle1 - rectangle2;
+        REQUIRE(intersection.type == IntersectionType::rectangle);
+        REQUIRE(*intersection.shape.rectangle == Rectangle(Point(2.1, 1.1), Point(3.65, 4.213)));
     }
 
     SECTION("works with basic input parameters 3") {
         Rectangle rectangle1(Point(-1.2, 0), Point(3.65, 4.213));
         Rectangle rectangle2(Point(-1.2, 0), Point(3.65, 2.07));
 
-        Rectangle intersection = rectangle1 - rectangle2;
-        REQUIRE(intersection == Rectangle(Point(-1.2, 0), Point(3.65, 2.07)));
+        Intersection intersection = rectangle1 - rectangle2;
+        REQUIRE(intersection.type == IntersectionType::rectangle);
+        REQUIRE(*intersection.shape.rectangle == Rectangle(Point(-1.2, 0), Point(3.65, 2.07)));
     }
 
     SECTION("works with basic input parameters 4") {
         Rectangle rectangle1(Point(-1.2, 0), Point(7.34, 7.07));
         Rectangle rectangle2(Point(2.1, 1.1), Point(3.65, 4.213));
 
-        Rectangle intersection = rectangle1 - rectangle2;
-        REQUIRE(intersection == Rectangle(Point(2.1, 1.1), Point(3.65, 4.213)));
+        Intersection intersection = rectangle1 - rectangle2;
+        REQUIRE(intersection.type == IntersectionType::rectangle);
+        REQUIRE(*intersection.shape.rectangle == Rectangle(Point(2.1, 1.1), Point(3.65, 4.213)));
     }
 
     SECTION("works with basic input parameters 5") {
         Rectangle rectangle1(Point(-5.5, 4), Point(-1.4, 2));
         Rectangle rectangle2(Point(-3, 3), Point(2, 1));
 
-        Rectangle intersection = rectangle1 - rectangle2;
-        REQUIRE(intersection == Rectangle(Point(-3, 3), Point(-1.4, 2)));
+        Intersection intersection = rectangle1 - rectangle2;
+        REQUIRE(intersection.type == IntersectionType::rectangle);
+        REQUIRE(*intersection.shape.rectangle == Rectangle(Point(-3, 3), Point(-1.4, 2)));
     }
 
     SECTION("works with basic input parameters 6") {
         Rectangle rectangle1(Point(-5.5, 4), Point(-1.4, 1));
         Rectangle rectangle2(Point(-3, 3), Point(2, 2));
 
-        Rectangle intersection = rectangle1 - rectangle2;
-        REQUIRE(intersection == Rectangle(Point(-3, 3), Point(-1.4, 2)));
+        Intersection intersection = rectangle1 - rectangle2;
+        REQUIRE(intersection.type == IntersectionType::rectangle);
+        REQUIRE(*intersection.shape.rectangle == Rectangle(Point(-3, 3), Point(-1.4, 2)));
     }
 
     SECTION("works with basic input parameters 7") {
         Rectangle rectangle1(Point(-5.5, 4), Point(-1.4, 1));
         Rectangle rectangle2(Point(10, 3), Point(20, 2));
 
-        Rectangle intersection = rectangle1 - rectangle2;
-        REQUIRE(intersection == Rectangle());
+        Intersection intersection = rectangle1 - rectangle2;
+        REQUIRE(intersection.type == IntersectionType::none);
     }
 }
